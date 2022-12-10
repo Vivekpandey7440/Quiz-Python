@@ -1,5 +1,4 @@
-import random
-import json
+
 
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1", "y")
@@ -17,10 +16,10 @@ class Quiz:
 
         questions = Quiz.loadQuestions()
         category = Quiz.showCatalogs()
-        if category  == -1:
+        if category  == 1:
             Quiz.init()
             return
-        elif(category == 0):
+        elif(category == -1):
             quizQues = Quiz.pickRandomMergedQuestions()
         else:
             quizQues = Quiz.pickRandomQuestions(category)
@@ -36,7 +35,6 @@ class Quiz:
 
 
     def showCatalogs():
-        """Shows the availaboe categories to the user and allows them to pick one among them"""
         categories = list(questions.keys())
         for i in range(0, len(categories)):
             print("%d. %s"%(i+1, categories[i]))
@@ -52,7 +50,6 @@ class Quiz:
             return categories[n-1]
 
     def pickRandomMergedQuestions():
-        """Merges all the categories and random picks 5 questions from them."""
         quizCategory = list(questions.keys())
         quizQuestions = list()
         for i in quizCategory:
